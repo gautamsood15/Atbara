@@ -13,3 +13,34 @@ Project Features :-
 9. Get the view count (anonymous | register)
 10. edit video
 11. delete video
+
+
+# Model Structure
+
+1. User
+
+2. Category
+    name (blog education, entertainment, technology)
+
+
+3. Channel
+    name
+    user
+    cannel art
+    channel icon
+    description
+    category
+
+4. Video
+    id uuid
+    video
+    channel
+    uploaded
+
+5. VideoDetail
+    videofile
+    title
+    description
+    visibility
+    thumbnail
+    
