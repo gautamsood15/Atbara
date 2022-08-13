@@ -40,14 +40,10 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.staticfiles",
 
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
     "KosiApp",
 ]
 
-SITE_ID = 1
-ACCOUNT_EMAIL_VERIFICATION = None
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -143,8 +139,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+STATICFILES_DIRS = [BASE_DIR / 'static']
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
