@@ -51,5 +51,15 @@ def login1(request):
 def youtuber(request):
     check = Youtuber.objects.filter(youtuber=request.user)
     if not check:
-        return HttpResponse("youtuber not found")
+        youtuber = Youtuber.objects.create(youtuber=request.user)
+        if youtuber:
+            return redirect("upload")
+    else:
+        return redirect("index")
+    
     return HttpResponse("Youtuber Created")
+
+
+def upload(request):
+    return render(request, 'upload.html', {})
+
