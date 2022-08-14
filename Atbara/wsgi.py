@@ -1,5 +1,5 @@
 """
-WSGI config for Kosi project.
+WSGI config for Atbara project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Kosi.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Atbara.settings")
 
 application = get_wsgi_application()

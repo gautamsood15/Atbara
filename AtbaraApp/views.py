@@ -1,7 +1,9 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
+from .models import Youtuber
 
 # Create your views here.
 
@@ -44,3 +46,10 @@ def login1(request):
             return redirect('login')
 
     return render(request, 'login.html', {})
+
+
+def youtuber(request):
+    check = Youtuber.objects.filter(youtuber=request.user)
+    if not check:
+        return HttpResponse("youtuber not found")
+    return HttpResponse("Youtuber Created")
