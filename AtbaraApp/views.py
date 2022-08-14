@@ -1,10 +1,10 @@
-from django.http.response import HttpResponse
-from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import render,redirect,HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login,authenticate 
 from .models import Youtuber
-
 # Create your views here.
 
 
@@ -64,5 +64,18 @@ def upload(request):
     return render(request, 'upload.html', {})
 
 
-def channel(request):
-    return render(request, 'channel.html', {})
+def create_channel(request):
+    if request.method == 'POST':
+        file = request.FILES['file']
+        channelname = request.POST['channelname']
+        youtuber = Youtuber.objects.filter(youtuber=request.user).update(channel_name=channelname,youtubeimage=file)
+        if youtuber:
+            return JsonResponse({
+                'success':True,
+                #'link':'channel'
+            })
+    context ={}
+    youtuber = Youtuber.objects.filter(youtuber=request.user)
+    if youtuber:
+        context = {"success":"hai"}
+    return render(request,'createchannel.html',context)
