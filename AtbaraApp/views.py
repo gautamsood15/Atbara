@@ -63,3 +63,6 @@ def youtuber(request):
 def upload(request):
     return render(request, 'upload.html', {})
 
+
+def channel(request):
+    return render(request, 'channel.html', {})
