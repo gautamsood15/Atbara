@@ -8,4 +8,6 @@ urlpatterns = [
     path('upload', views.upload, name="upload"),
     path('youtuber', views.youtuber, name="youtuber"),
     path('createchannel', views.create_channel, name="create_channel"),
+    path('channel/', views.channel, name="channel")
     ]
+ 

@@ -79,3 +79,6 @@ def create_channel(request):
     if youtuber:
         context = {"success":"hai"}
     return render(request,'createchannel.html',context)
+
+def channel(request):
+    return render(request, 'channel.html')
