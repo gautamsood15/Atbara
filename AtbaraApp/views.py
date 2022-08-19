@@ -53,6 +53,17 @@ def login1(request):
 
 
 def videoupload(request):
+    if request.method == 'POST':
+        video_title = request.POST['videoTitle']
+        video = request.FILES['video']
+        video_thumbnail = request.FILES['thumbnail']
+        video_desc = request.POST['description']
+        youtuber_video = Youtuber.objects.filter(youtuber=request.user)
+        if youtuber_video:
+            video = Video.objects.create(youtuber_video=youtuber_video, video_thumbnail=video_thumbnail, video_title=video_title, video=video, video_desc=video_desc)
+            if video:
+                context = {'uploaded': True}
+
     context = {}
     youtuber = Youtuber.objects.filter(youtuber=request.user)
     if youtuber:
