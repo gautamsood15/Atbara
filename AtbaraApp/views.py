@@ -52,6 +52,23 @@ def login1(request):
     return render(request, 'login.html', {})
 
 
+def videoupload(request):
+    context = {}
+    youtuber = Youtuber.objects.filter(youtuber=request.user)
+    if youtuber:
+        context = {"success":"hai"}
+    return render(request, 'videoupload.html', context)
+
+def video(request):
+    context = {}
+    youtuber = Youtuber.objects.filter(youtuber=request.user)
+    if youtuber:
+        context = {"success":"hai"}
+    return render(request, 'video.html', context)
+
+
+
+
 def youtuber(request):
     check = Youtuber.objects.filter(youtuber=request.user)
     if not check:
@@ -85,4 +102,8 @@ def create_channel(request):
     return render(request,'createchannel.html',context)
 
 def channel(request):
-    return render(request, 'channel.html')
+    context = {}
+    youtuber = Youtuber.objects.filter(youtuber=request.user)
+    if youtuber:
+        context = {"success":"hai"}
+    return render(request, 'channel.html', context)
