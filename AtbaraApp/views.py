@@ -10,6 +10,10 @@ from .models import Youtuber
 
 def index(request):
     context = {}
+    if request.user.is_authenticated:
+        youtuber = Youtuber.objects.filter(youtuber=request.user)
+        if youtuber:
+            context = {"success":"hai"}
     return render(request, 'index.html', context)
 
 
