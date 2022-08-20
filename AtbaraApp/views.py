@@ -79,6 +79,10 @@ def videoupload(request):
     return render(request, 'videoupload.html', context)
 
 def video(request, id):
+    views = 0
+    video = Video.objects.filter(id=id)[0]
+    views = video.Views + 1
+    video_up = Video.objects.filter(id=id).update(Views=views)
     a = False
     yes = False
     context = {}
@@ -134,8 +138,10 @@ def create_channel(request):
 def channel(request):
     context = {}
     youtuber = Youtuber.objects.filter(youtuber=request.user)
+    videos = Video.objects.filter(youtuber_video = youtuber[0])
+    print(videos)
     if youtuber:
-        context = {"success":"hai"}
+        context = {"success":"hai", 'videos':videos}
     return render(request, 'channel.html', context)
 
 def subscribe(request, id):
@@ -146,3 +152,9 @@ def subscribe(request, id):
     print(youtuber.subscribers.all())
     
     return HttpResponse(youtuber)
+
+def anychannel(request, id):
+    youtuber = Youtuber.objects.get(id=id)
+    videos = Video.objects.filter(youtuber_video=youtuber)
+    context = {'youtuber':youtuber, 'videos':videos}
+    return render(request, 'anychannel.html', context)

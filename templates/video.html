@@ -42,7 +42,7 @@
               alt=""
               class="logo"
             />
-            <a href="#">{{video.youtuber_video.channel_name}}</a>
+            <a href="{% url 'user_channel' video.youtuber_video.id %}">{{video.youtuber_video.channel_name}}</a>
             {% if yes == True %}
             <button disabled id="subs_not">Subscribed</button>
             {% else %}
