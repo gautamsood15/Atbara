@@ -11,4 +11,4 @@ class youtuber(admin.ModelAdmin):
 @admin.register(Video)
 
 class youtuber(admin.ModelAdmin):
-    list_display = ['video']
+    list_display = ['id', 'youtuber_video']

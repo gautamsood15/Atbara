@@ -4,16 +4,22 @@ from django.shortcuts import render,redirect,HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import login,authenticate 
-from .models import Youtuber
+from .models import Youtuber, Video
 # Create your views here.
 
 
 def index(request):
     context = {}
+    a = False
     if request.user.is_authenticated:
         youtuber = Youtuber.objects.filter(youtuber=request.user)
         if youtuber:
-            context = {"success":"hai"}
+            a = True
+    videos = Video.objects.all()
+    if a == True:
+        context = {'videos': videos, 'success': "hai"}
+    else:
+        context = {'videos': videos}
     return render(request, 'index.html', context)
 
 
@@ -53,28 +59,37 @@ def login1(request):
 
 
 def videoupload(request):
+    context = {}
+    youtuber = Youtuber.objects.filter(youtuber=request.user)
+    if youtuber:
+        context = {"success":"hai"}
+    
     if request.method == 'POST':
         video_title = request.POST['videoTitle']
         video = request.FILES['video']
         video_thumbnail = request.FILES['thumbnail']
         video_desc = request.POST['description']
-        youtuber_video = Youtuber.objects.filter(youtuber=request.user)
+        youtuber_video = Youtuber.objects.filter(youtuber=request.user)[0]
         if youtuber_video:
             video = Video.objects.create(youtuber_video=youtuber_video, video_thumbnail=video_thumbnail, video_title=video_title, video=video, video_desc=video_desc)
             if video:
                 context = {'uploaded': True}
 
-    context = {}
-    youtuber = Youtuber.objects.filter(youtuber=request.user)
-    if youtuber:
-        context = {"success":"hai"}
+    
     return render(request, 'videoupload.html', context)
 
-def video(request):
+def video(request, id):
+    a = False
     context = {}
     youtuber = Youtuber.objects.filter(youtuber=request.user)
     if youtuber:
         context = {"success":"hai"}
+        a = True
+    video = Video.objects.get(id=id)
+    if a == True:
+        context = {"success":"hai", "video": video}
+    else:
+        context = {'video': video}
     return render(request, 'video.html', context)
 
 
