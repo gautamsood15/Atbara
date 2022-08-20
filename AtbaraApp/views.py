@@ -133,3 +133,8 @@ def channel(request):
     if youtuber:
         context = {"success":"hai"}
     return render(request, 'channel.html', context)
+
+def subscribe(request, id):
+    video = Video.objects.get(id=id)
+    subscribeto = video.youtuber_video.subscribers.add(request.user)
+    return HttpResponse(subscribeto)

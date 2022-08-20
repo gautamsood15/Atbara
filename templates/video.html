@@ -32,7 +32,7 @@
               {% if yes == True %}
               <button disabled id="subs_not">Subscribed</button>
               {% else %}
-              <a href="#" id="subs">Subscribe</a>
+              <a href="{% url 'subscribe' video.id %}" id="subs">Subscribe</a>
 
               {% endif %}
             </div>
