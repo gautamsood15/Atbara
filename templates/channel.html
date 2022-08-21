@@ -148,9 +148,8 @@
 
     <h2 class="text-center" style="color: rgb(44, 44, 100);">{{user|capfirst}}'s Channel</h2>  
     
-    <div class="col-md-4">
-      <img class="channel_image" src="{% static 'images/channel.jpeg' %}" class="mx-2" alt="" srcset="" style="width: 60px; height: 60px;"> 
-      <b  style="color: rgb(44, 44, 100);">Channel Name</b>
+    <div class=" text-center">
+      <img class="channel_image" src="{% static 'images/channel.jpeg' %}" class="mx-2" alt="" srcset="" style="width: 60px; height: 60px;">
     </div>  
 
   </div>
@@ -172,8 +171,8 @@
       <div class="video_item">
         <a href="{% url 'video' i.id %}" style="text-decoration: none;">
           <img src="{{i.video_thumbnail.url}}" class="mx-2" alt="" srcset="" width="300" height="180" style="border-radius: 5px;">
-        <p class="text-center" style="color: rgb(44, 44, 100); font-weight: 700;">{{i.video_title}}</p>
-      </a>
+          <p class="text-center" style="color: rgb(44, 44, 100); font-weight: 700;">{{i.video_title}}</p>
+        </a>
       </div>
 
     
@@ -182,7 +181,7 @@
   </div>
 
 
-
+ 
 
 
 

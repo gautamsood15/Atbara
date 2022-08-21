@@ -7,85 +7,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="{% static 'images/favicon.webp' %}" type="image/webp">
     <title>Atbara</title>
-    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/video.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />   
+    <!-- <link rel="stylesheet" href="{% static 'css/video.css' %}" />  -->
   </head>
 
 
+  <style>
+    .video {
+      padding: 10px;
+      max-width: 840px;
+    }
+
+    body {
+      padding: 10px;
+    }
+
+    .video_text {
+      font-family: Arial, Helvetica, sans-serif;
+      color: rgb(44, 44, 100);
+      max-width: 840px;
+      padding-top: 10px;
+      padding-left: .5em;
+    }
+
+    .video_info {
+      padding-top: 1em;
+      display: flex;
+    }
+
+    .hr_line {
+      width: 840px;
+      margin-top: 10px;
+    }
+
+    .channel_thumbnail {
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;     
+    }
+
+    .total_view {
+      padding-top: 5px;
+      padding-left: 33em;
+      color: rgb(44, 44, 100);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .channel_link {
+      padding-top: 5px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: rgb(44, 44, 100);
+      padding-left: .7em;
+      font-weight: bold;
+    }
+
+    .subs_not {
+      
+      background-color: rgb(220, 220, 234);
+      border: 2px;
+      color: black;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: medium;
+      font-weight: bold;
+      margin-left: 1em;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .subs {
+      background-color: rgb(8, 8, 62);
+      border: none;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: medium;
+      font-weight: bold;
+      margin-left: 1em;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .hr_line2 {
+      width: 840px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+
+    .vedio_comments {
+      background-color: rgb(51, 51, 51);
+      border: none;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: medium;
+      font-weight: bold;
+      margin-top: 2px;
+      margin-left: 46.5em;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+  </style>
 
 
 
 
 
-  <body style="padding: 10px;">
+  <body>
 
 
-    
+   
 
     {% include 'navbar.html' %}
 
-  <br>
+ 
+    <br>
+    
 
 
-  <div class="row-2">
-    <div class="width-1 flex">
-      <div class="video">
-        <video autoplay controls src="{{video.video.url}}"></video>
-        <div class="channel_info">
-          <div class="views_title">
-            <h2 class="text-primary">{{video.video_title}}</h2>
-            <h6 class="view">{{video.Views}} views</h6>
-          </div>
-          <div class="channel_name_img">
-            <img
-              src="{{video.youtuber_video.youtubeimage.url}}"
-              alt=""
-              class="logo"
-            />
-            <a href="{% url 'user_channel' video.youtuber_video.id %}">{{video.youtuber_video.channel_name}}</a>
-            {% if yes == True %}
-            <button disabled id="subs_not">Subscribed</button>
-            {% else %}
-            <a href="{% url 'subscribe' video.id %}" id="subs">Subscribe</a>
 
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      <div class="comment">
-        <form action="">
-          <textarea name="" id="" cols="30" rows="10"></textarea>
-          <button type="submit">Comment</button>
-        </form>
-      </div>
+
+  <div class="video">
+    <video controls width="840px">
+      <source src="{{video.video.url}}" type="video/mp4">
+      <source src="{{video.video.url}}" type="video/ogg">
+    </video>
+    
+    <h2 class="video_text">{{video.video_title}}</h2> <hr class="hr_line">
+
+    <div class="video_info">
+
+      <img class="channel_thumbnail" src="{{video.youtuber_video.youtubeimage.url}}" alt="" class="logo"/>
+      <a class="channel_link" href="{% url 'user_channel' video.youtuber_video.id %}">{{video.youtuber_video.channel_name}}</a>
+      <b class="total_view">{{video.Views}} views</b>
+
+      {% if yes == True %}
+      <button class="subs_not">SUBSCRIBED</button>
+      {% else %}
+      <a href="{% url 'subscribe' video.id %}" class="subs">SUBSCRIBE</a>
+      {% endif %}
+
     </div>
-    <div class="width-1">
-      <!-- VIDEOS  -->
-      <a href="/video">
-        <div>
-          <img
-            src="{% static 'images/img.jpg' %}"
-            alt=""
-            width="500"
-            class="thumbnail"
-          />
-          <div class="channel-name-title">
-            <img
-              src="{% static 'images/img.jpg' %}"
-              alt=""
-              class="channel-image"
-            />
-            <h3 class="title">Title of the video</h3>
-          </div>
-          <div class="channel-name">
-            <h2 class="channel-tile">Youtuber Channel Name</h2>
-            <p class="views">700k</p>
-          </div>
-        </div></a
-      >
-      <!-- VIDEO ENDS HERE -->
+
+    <hr class="hr_line2">
+
+    <div>
+      <textarea name="comment_area" rows="5" cols="102"></textarea>
+      <button type="submit" class="vedio_comments">Comment</button>
     </div>
+
   </div>
+
+
+            
+            
+       
+        
+     
+
+    
+
 
 
 
